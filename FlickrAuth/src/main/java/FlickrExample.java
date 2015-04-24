@@ -51,8 +51,8 @@ public class FlickrExample
         final DBCollection twitter = mongoDB.getCollection("twitterTrend");
 
         // Replace these with your own api key and secret
-        String apiKey = "5b645453c2e750f5c5c3c430c5006b15";
-        String apiSecret = "49b657363226c108";
+        String apiKey = "Your API key";
+        String apiSecret = "Your secret";
         final OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret)
                                         .callback("http://localhost:4567/callback/url").build();
         final OAuthRequest authRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
