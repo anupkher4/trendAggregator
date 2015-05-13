@@ -1,3 +1,11 @@
+
+
+		<ul>
+			{{#each tweets}}
+			<li></li>
+			{{/each}}
+		</ul>
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -112,18 +120,33 @@
 </nav>
 
 
-{{#each instas}}
+{{#each checkins}}
+<div class="row">
 
-<div class="large-3 columns">
-	<div class="panel">
-		<img src={{url}}>
-		<p>Likes: {{likesCount}}</p>
-		<p>Comments: {{commentCount}}</p>
+	<div class="large-3 columns">
+		<div class="panel">
+			<h5>Checkin details</h5>
+			<p>City: {{city}}</p>
+			<p>State: {{state}}</p>
+			<p>Zip: {{zipCode}}</p>
+		</div>
 	</div>
+	<div class="large-6 columns">
+		<div class="panel">
+			<h5>{{name}}</h5>
+			<p>{{fullAddress}}</p>
+		</div>
+	</div>
+	<div class="large-3  columns">
+		<div class="panel">
+			<h5>Checkin Stats</h5>
+			<p>No. of checkins: {{checkinsCounts}}</p>
+			<p>No. of users checking in: {{usersCount}}</p>
+		</div>
+	</div>
+
 </div>
-
 {{/each}}
-
 
 <footer class="row">
 	<div class="large-12 columns">
