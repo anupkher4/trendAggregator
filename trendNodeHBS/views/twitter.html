@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="css/foundation.css" />
 	<script src="js/vendor/modernizr.js"></script>
+	<link rel="stylesheet" href="css/twitter.css" />
 </head>
 <body>
 <nav class="top-bar" data-topbar>
@@ -15,7 +16,7 @@
 		<li class="name">
 			<h1>
 				<a href="#">
-					Top Bar Title
+					Top Trends on Twitter
 				</a>
 			</h1>
 		</li>
@@ -23,90 +24,14 @@
 	</ul>
 
 	<section class="top-bar-section">
-
-		<ul class="left">
-			<li class="divider"></li>
-			<li class="has-dropdown">
-				<a class="active" href="#">Main Item 1</a>
-				<ul class="dropdown">
-					<li><label>Section Name</label></li>
-					<li><a href="#" class="">Dropdown Level 1</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li class="divider"></li>
-					<li><label>Section Name</label></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li class="divider"></li>
-					<li><a href="#">See all →</a></li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li><a href="#">Main Item 2</a></li>
-			<li class="divider"></li>
-			<li class="has-dropdown">
-				<a href="#">Main Item 3</a>
-				<ul class="dropdown">
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li class="divider"></li>
-					<li><a href="#">See all →</a></li>
-				</ul>
-			</li>
-
-		</ul>
-
-
 		<ul class="right">
 			<li class="divider"></li>
-			<li class="has-dropdown">
-				<a href="#">Main Item 4</a>
-				<ul class="dropdown">
-					<li><label>Section Name</label></li>
-					<li class="has-dropdown">
-						<a href="#" class="">Has Dropdown, Level 1</a>
-						<ul class="dropdown">
-							<li><a href="#">Dropdown Options</a></li>
-							<li><a href="#">Dropdown Options</a></li>
-							<li class="has-dropdown">
-								<a href="#">Has Dropdown, Level 2</a>
-								<ul class="dropdown test">
-									<li><a href="#">Subdropdown Option</a></li>
-									<li><a href="#">Subdropdown Option</a></li>
-									<li><a href="#">Subdropdown Option</a></li>
-								</ul>
-							</li>
-							<li><a href="#">Subdropdown Option</a></li>
-							<li><a href="#">Subdropdown Option</a></li>
-							<li><a href="#">Subdropdown Option</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li class="divider"></li>
-					<li><label>Section Name</label></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li class="divider"></li>
-					<li><a href="#">See all →</a></li>
-				</ul>
-			</li>
 			<li class="divider"></li>
-			<li><a href="#">Main Item 5</a></li>
+			<li><a href="/">Home</a></li>
 			<li class="divider"></li>
-			<li class="has-dropdown">
-				<a href="#">Main Item 6</a>
-				<ul class="dropdown">
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li><a href="#">Dropdown Option</a></li>
-					<li class="divider"></li>
-					<li><a href="#">See all →</a></li>
-				</ul>
-			</li>
+			<li><a href="/insta">Instagram</a></li>
+			<li class="divider"></li>
+			<li><a href="/foursquare">Foursquare</a></li>
 		</ul>
 	</section>
 </nav>
@@ -115,8 +40,8 @@
 {{#each tweets}}
 
 <div class="large-3 columns">
-	<div class="panel">
-		<h5><a href={{url}}>{{name}}</a></h5>
+	<div class="panel" style="background-color: #fef9ff;border-radius: 5px">
+		<h5><a style="color: #080808" href={{url}}>{{name}}</a></h5>
 	</div>
 </div>
 
