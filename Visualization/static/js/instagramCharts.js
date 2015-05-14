@@ -45,10 +45,10 @@ function makeGraphs(error, projectsJson, statesJson) {
     //Charts
 	//var timeChart = dc.barChart("#time-chart");
 	var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
-	var povertyLevelChart = dc.rowChart	("#poverty-level-row-chart");
+	var povertyLevelChart = dc.rowChart	("#category-level-row-chart");
 	var usChart = dc.geoChoroplethChart("#us-chart");
 	var numberProjectsND = dc.numberDisplay("#number-projects-nd");
-	var totalDonationsND = dc.numberDisplay("#total-donations-nd");
+	var totalDonationsND = dc.numberDisplay("#total-users-nd");
 
 	numberProjectsND
 		.formatNumber(d3.format("d"))
@@ -83,7 +83,7 @@ function makeGraphs(error, projectsJson, statesJson) {
 
 	povertyLevelChart
 		.width(500)
-		.height(5000)
+		.height(10000)
         .dimension(povertyLevelDim)
         .group(numProjectsByPovertyLevel)
         .xAxis().ticks(4);
