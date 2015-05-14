@@ -20,6 +20,7 @@ public class FourSquareTrend {
     private String state;
     private String fullAddress;
     private String zipCode;
+    private String insertedTime;
     
 	public String getId() {
 		return id;
@@ -92,6 +93,12 @@ public class FourSquareTrend {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getInsertedTime() {
+		return insertedTime;
+	}
+	public void setInsertedTime(String insertedTime) {
+		this.insertedTime = insertedTime;
 	}
 
     
