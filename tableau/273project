@@ -1,0 +1,75 @@
+/**
+ * Created by raghav on 5/13/15.
+ */
+
+import com.mongodb.*;
+import kafka.javaapi.producer.Producer;
+import kafka.producer.KeyedMessage;
+import kafka.producer.ProducerConfig;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+public class SimpleProducer {
+    private static Producer<String, String> producer;
+    private final Properties c = new Properties();
+
+    public SimpleProducer() {
+        Properties props = new Properties();
+        props.put("metadata.broker.list", "54.149.84.25:9092");
+        props.put("serializer.class", "kafka.serializer.StringEncoder");
+        ProducerConfig config = new ProducerConfig(props);
+        Producer<String, String> producer = new Producer<String, String>(config);
+    }
+
+    // The message is sent to a randomly selected partition registered in ZK
+    public static void main(String[] args) {
+
+
+
+    }
+    public void sendEmail (String mod_email, String poll_result){
+        try
+        {
+            // To connect to mongodb server
+            MongoClient mongoClient = new MongoClient("@ds047911.mongolab.com", 47911);
+            // Now connect to your databases
+            //DB db = mongoClient.getDB("cmpe273");
+            System.out.println("Connect to database successfully");
+            MongoClientURI uri  = new MongoClientURI("mongodb://root:test123@ds047911.mongolab.com:47911/cmpe273");
+            MongoClient client = new MongoClient(uri);
+            DB db = client.getDB(uri.getDatabase());
+            DBCollection twitter = db.getCollection("twitterTrend");
+            System.out.println(twitter);
+            BasicDBObject findQuery = new BasicDBObject();
+            findQuery.put("employeeId", "MePuedeMuchoQue");
+            BasicDBObject orderBy = new BasicDBObject("decade", 1);
+            DBCursor docs = twitter.find( );
+            while(docs.hasNext()){
+                DBObject doc = docs.next();
+                List a1 = new ArrayList();
+                a1.add(doc.get("url"));
+                System.out.println("\t" + a1);
+            }
+
+            client.close();
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        new SimpleProducer();
+        String topic = "Trending Tweets";
+        mod_email = "raghavendra.reddy@sjsu.edu";
+        String msg = mod_email + ":009987796:" + poll_result;
+        System.out.println(msg);
+        //KeyedMessage<Integer, String> data = new KeyedMessage<>(topic, msg);
+        //KeyedMessage<String, String> data = new KeyedMessage<>(topic, msg);
+        //producer.send(data);
+        KeyedMessage<String, String> data = new KeyedMessage<String, String>(topic, msg);
+        producer.send(data);
+        producer.close();
+    }
+}
+
+
