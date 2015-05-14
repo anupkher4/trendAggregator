@@ -18,7 +18,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'io.spring.dependency-management'
 
 jar {
-    baseName = 'demo'
+    baseName = 'trend'
     version = '0.0.1'
 }
 sourceCompatibility = 1.7
@@ -34,6 +34,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-social-facebook")
     compile("org.springframework.boot:spring-boot-starter-social-twitter")
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("com.googlecode.json-simple:json-simple:1.1")
     testCompile("org.springframework.boot:spring-boot-starter-test") 
 }
 
