@@ -6,16 +6,16 @@ queue()
 function makeGraphs(error, projectsJson, statesJson) {
 
 	//Clean projectsJson data
-	var donorschooseProjects = projectsJson;
+	var trendsJson = projectsJson;
 	var dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
-	donorschooseProjects.forEach(function(d) {
+	trendsJson.forEach(function(d) {
 		d["insertedTime"] = dateFormat.parse(d["insertedTime"]);
 		//d["insertedTime"].setDate(1);
 		d["usersCount"] = +d["usersCount"];
 	});
 
 	//Create a Crossfilter instance
-	var ndx = crossfilter(donorschooseProjects);
+	var ndx = crossfilter(trendsJson);
 
 	//Define Dimensions
 	var dateDim = ndx.dimension(function(d) { return d["insertedTime"]; });
@@ -41,16 +41,16 @@ function makeGraphs(error, projectsJson, statesJson) {
 	//Define values (to be used in charts)
 	//var minDate = dateDim.bottom(1)[0]["insertedTime"];
 	//var maxDate = dateDim.top(1)[0]["insertedTime"];
-var min = d3.time.day.offset(d3.min(donorschooseProjects, function(d) { return d["insertedTime"];} ),-1);
- var max = d3.time.day.offset(d3.max(donorschooseProjects, function(d) { return d["insertedTime"];} ), 1);
+var min = d3.time.day.offset(d3.min(trendsJson, function(d) { return d["insertedTime"];} ),-1);
+ var max = d3.time.day.offset(d3.max(trendsJson, function(d) { return d["insertedTime"];} ), 1);
     //Charts
     //Charts
 	var timeChart = dc.lineChart("#time-chart");
 	var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
-	var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
+	var povertyLevelChart = dc.rowChart("#category-level-row-chart");
 	var usChart = dc.geoChoroplethChart("#us-chart");
 	var numberProjectsND = dc.numberDisplay("#number-projects-nd");
-	var totalDonationsND = dc.numberDisplay("#total-donations-nd");
+	var totalDonationsND = dc.numberDisplay("#total-users-nd");
 	//var x = d3.time.scale().range([0, 600]);
 
 	numberProjectsND

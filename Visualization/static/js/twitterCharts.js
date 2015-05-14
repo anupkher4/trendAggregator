@@ -20,33 +20,21 @@ function makeGraphs(error, projectsJson, statesJson) {
 	//Define Dimensions
 	var dateDim = ndx.dimension(function(d) { return d["created_at"]; });
 	var resourceTypeDim = ndx.dimension(function(d) { return d["name"]; });
-	//var povertyLevelDim = ndx.dimension(function(d) { return d["name"]; });
-	//var stateDim = ndx.dimension(function(d) { return d["name"]; });
-	//var totalDonationsDim  = ndx.dimension(function(d) { return d["name"]; });
+
 
 
 	//Calculate metrics
 	var numProjectsByDate = dateDim.group(); 
 	var numProjectsByResourceType = resourceTypeDim.group();
-	//var numProjectsByPovertyLevel = povertyLevelDim.group();
-	//var totalDonationsByState = stateDim.group().reduceSum(function(d) {
-		//return d["state"];
-	//});
+
 
 	var all = ndx.groupAll();
-	//var totalDonations = ndx.groupAll().reduceSum(function(d) {return d["name"];});
-
-	//var max_state = totalDonationsByState.top(1)[0].value;
-
-	//Define values (to be used in charts)
-	//var minDate = dateDim.bottom(13)[0]["created_at"];
-	//var maxDate = dateDim.top(13)[0]["created_at"];
+	
  var min = d3.time.day.offset(d3.min(donorschooseProjects, function(d) { return d["created_at"];} ),-1);
  var max = d3.time.day.offset(d3.max(donorschooseProjects, function(d) { return d["created_at"];} ), 1);
     //Charts
 	var timeChart = dc.lineChart("#time-chart");
 	var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
-	//var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
 	//var usChart = dc.geoChoroplethChart("#us-chart");
 	var numberProjectsND = dc.numberDisplay("#number-projects-nd");
 	//var totalDonationsND = dc.numberDisplay("#total-donations-nd");
@@ -64,29 +52,26 @@ function makeGraphs(error, projectsJson, statesJson) {
 		.formatNumber(d3.format(".3s")); */
 
 	timeChart
-	.width(100)
-                    .height(100)
+	.width(500)
+                    .height(500)
                     .dimension(dateDim)
                     .group(numProjectsByDate)
                     .brushOn(true)
                     .x(d3.time.scale().domain([min, max]))
-                    .round(d3.time.day.round)
+                    .round(d3.time.day(new Date()).round)
                     .elasticY(true)
                     .xUnits(d3.time.days)
 		
 	resourceTypeChart
-        .width(1200)
-        .height(2000)
+        .width(6000)
+        .height(6000)
         .dimension(resourceTypeDim)
         .group(numProjectsByResourceType)
-        .xAxis().ticks(4);
+        .xAxis().ticks(10);
+		
+		
 
-	/* povertyLevelChart
-		.width(300)
-		.height(250)
-        .dimension(povertyLevelDim)
-        .group(numProjectsByPovertyLevel)
-        .xAxis().ticks(4); */
+
 
 
 	/* usChart.width(1000)
