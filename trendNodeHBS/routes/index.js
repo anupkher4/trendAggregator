@@ -18,7 +18,7 @@ var TwitterTrend = mongoose.model('TwitterTrend', {
 var InstaTrend = mongoose.model('InstaTrend', {
 	_class: String,
 	url: String,
-	created_time: String,
+	created_time: Date,
   likesCount: Number,
   commentCount: Number
 }, 'instagramTrend');
@@ -34,7 +34,8 @@ var FoursquareTrend = mongoose.model('FoursquareTrend', {
   city: String,
   state: String,
   fullAddress: String,
-  zipCode: String
+  zipCode: String,
+  insertedTime: Date
 }, 'fourSquareTrend');
 
 /* GET home page. */
@@ -44,28 +45,28 @@ router.get('/', function(req, res, next) {
 
 /* GET twitter data. */
 router.get('/twitter', function(req, res, next) {
-  TwitterTrend.find({}).exec(function(err, result) {
+  TwitterTrend.find({}).sort({as_of: -1}).exec(function(err, result) {
     if (err) throw err;
     console.log(result);
-    res.render('twitter', { title: 'Trending topics', tweets: result });
+    res.render('twitter', { title: 'Twitter Trending Topics', tweets: result });
   });
 });
 
 /* GET instagram data. */
 router.get('/insta', function(req, res, next) {
-  InstaTrend.find({}).skip(10).exec(function(err, result) {
+  InstaTrend.find({}).sort({created_time: -1}).exec(function(err, result) {
     if (err) throw err;
     console.log(result);
-    res.render('insta', { title: 'Trending pics', instas: result });
+    res.render('insta', { title: 'Instagram Trending Pics', instas: result });
   });
 });
 
 /* GET foursquare data. */
 router.get('/foursquare', function(req, res, next) {
-  FoursquareTrend.find({}).skip(10).exec(function(err, result) {
+  FoursquareTrend.find({}).sort({insertedTime: -1}).exec(function(err, result) {
     if (err) throw err;
     console.log(result);
-    res.render('foursquare', { title: 'Recent Checkins', checkins: result });
+    res.render('foursquare', { title: 'FOursquare Recent Checkins', checkins: result });
   });
 });
 

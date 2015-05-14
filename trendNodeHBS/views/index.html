@@ -27,6 +27,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+     <script src="js/emailKafka.js" type="text/javascript"></script>
 
 </head>
 
@@ -53,6 +54,9 @@
                     </li>
                     <li>
                         <a href="#contact">About Us</a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:5000/">Cool Analytics</a>
                     </li>
                 </ul>
             </div>
@@ -81,10 +85,10 @@
                             <a href="/insta" class="btn btn-default btn-lg"><i class="fa fa-instagram fa-fw"></i> <span class="network-name">Instagram</span></a>
                         </li>
                         <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-foursquare fa-fw"></i> <span class="network-name">Foursquare</span></a>
+                            <a href="/foursquare" class="btn btn-default btn-lg"><i class="fa fa-foursquare fa-fw"></i> <span class="network-name">Foursquare</span></a>
                         </li>
-                                                    <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-google fa-fw"></i> <span class="network-name">Analytics</span></a>
+                            <li>
+                                <a href="https://10ay.online.tableau.com/#/site/trendvisualisation/workbooks/44885/views" class="btn btn-default btn-lg"><i class="fa fa-google fa-fw"></i> <span class="network-name">Analytics</span></a>
                             </li>
                     </ul>
                     </div>
@@ -108,7 +112,7 @@
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Get your daily dose of Social feed</h2>
-                    <p class="lead">Catch up on the trending topics from any of your favourtie social websites like <a target="_blank" href="http://join.deathtothestockphoto.com/">Twitter</a>, <a target="_blank" href="http://join.deathtothestockphoto.com/">Instagram</a>, <a target="_blank" href="http://join.deathtothestockphoto.com/">Foursquare</a></p>
+                    <p class="lead">Catch up on the trending topics from any of your favourtie social websites like <a target="_blank" href="/twitter">Twitter</a>, <a target="_blank" href="/insta">Instagram</a>, <a target="_blank" href="/foursquare">Foursquare</a></p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="img/ipad.png" alt="">
@@ -130,7 +134,7 @@
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Get Real Time Insights</h2>
-                    <p class="lead">Discover places people around you check in to, know who is tweeting and from where through our <a target="_blank" href="http://www.psdcovers.com/">Real Time Analytics</a>!</p>
+                    <p class="lead">Discover places people around you check in to, know who is tweeting and from where through our <a target="_blank" href="https://10ay.online.tableau.com/#/site/trendvisualisation/workbooks/44885/views">Real Time Analytics</a>!</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                     <img class="img-responsive" src="img/dog.png" alt="">
@@ -164,7 +168,7 @@
                             <a href="/foursquare" class="btn btn-default btn-lg"><i class="fa fa-foursquare fa-fw"></i> <span class="network-name">Foursquare</span></a>
                         </li>
                         <li>
-                            <a href="/" class="btn btn-default btn-lg"><i class="fa fa-google fa-fw"></i> <span class="network-name">Analytics</span></a>
+                            <a href="https://10ay.online.tableau.com/#/site/trendvisualisation/workbooks/44885/views" class="btn btn-default btn-lg"><i class="fa fa-google fa-fw"></i> <span class="network-name">Analytics</span></a>
                             </li>
                     </ul>
                 </div>
@@ -194,11 +198,13 @@
                             <a href="#contact">Contact</a>
                         </li>
                         <li class="pull-right form-inline">
-                        	<form><input type="email" placeholder="enter your email id" style="border-radius:5px; width:300px; height:43px; border:1px dashed">
-                            <a class="btn btn-default btn-lg"><span class="network-name">Stay Updated</span></a></form>
+                        	<form name="myForm" onsubmit="js/emailKafka.js">
+                                <input id="email" type="email" placeholder="enter your email id" style="border-radius:5px; width:300px; height:43px; border:1px dashed">
+                                <input type="submit" value="Subscribe">
+                            </form>
                         </li>
                     </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright &copy; Team Epsilon 2015. All Rights Reserved</p>
                 </div>
             </div>
         </div>
@@ -209,6 +215,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+   
 
 </body>
 
