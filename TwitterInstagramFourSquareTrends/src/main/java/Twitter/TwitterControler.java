@@ -24,6 +24,9 @@ public class TwitterControler {
     	@Autowired
     	private InstagramTrendRepository iRepo;
     	
+    	@Autowired
+    	private FourSquareTrendRepository fRepo;
+    	
     	@Scheduled(fixedRate = 900000)
  	    public void getTrend() throws IOException, ParseException {
     		
@@ -141,6 +144,77 @@ public class TwitterControler {
                   
         	
         }
+    	
+    	@Scheduled(fixedRate = 900000)
+ 	    public void getFourSquareTrend() throws IOException, ParseException {
+        	
+    		
+    		RestTemplate restTemplate1 = new RestTemplate();
+        	
+        	String s = restTemplate1.getForObject("https://api.foursquare.com/v2/venues/trending?ll=37.782193,-122.420262&client_id=4RINDNKSXCYBVKZCNNXMIVQSPRO2UKCJISGH4LEXNA2WLM0V&client_secret=U4X2X00LVWAD3ARBOSZQ3PZRKBUNG1OGPXYTOWV542XMFNEK&v=20150512&m=foursquare&count=10&radius=2000", String.class);
+        	
+        	System.out.println("FourSquare Popular Places");
+        	System.out.println(s);
+            
+            
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(s);
+            
+            JSONObject obj2 = (JSONObject) obj;
+            
+            JSONObject obj3 = (JSONObject) obj2.get("response");
+            
+            JSONArray array1 = (JSONArray) obj3.get("venues");
+            
+            for(int i=0; i< array1.size(); i++)
+            {
+            	
+                JSONObject obj4 = (JSONObject) array1.get(i);
+            	
+            	String name = (String) obj4.get("name");
+            	System.out.println("Name of the place: " + obj4.get("name"));
+            	
+            	JSONObject obj5 = (JSONObject) obj4.get("location");
+            	String address = (String) obj5.get("address");
+            	String crossStreet = (String) obj5.get("crossStreet");
+            	String city = (String) obj5.get("city");
+            	String state = (String) obj5.get("state");
+            	String zipCode = (String) obj5.get("postalCode");
+            	JSONArray array2 = (JSONArray) obj5.get("formattedAddress");
+            	String formattedAddress = (String) array2.get(0);
+            	
+            	JSONArray array3 = (JSONArray) obj4.get("categories");
+            	JSONObject obj6 = (JSONObject) array3.get(0);
+            	String category = (String) obj6.get("name");
+            	
+            	JSONObject obj7 = (JSONObject) obj4.get("stats");
+            	long checkinsCount = (long) obj7.get("checkinsCount");
+            	long usersCount = (long) obj7.get("usersCount");
+            	
+            	String url = (String) obj4.get("url");
+                
+            	FourSquareTrend fs = new FourSquareTrend();
+            	
+            	fs.setName(name);
+            	fs.setAddress(address);
+            	fs.setCrossStreet(crossStreet);
+            	fs.setCity(city);
+            	fs.setState(state);
+            	fs.setZipCode(zipCode);
+            	fs.setFullAddress(formattedAddress);
+            	fs.setCheckinsCounts(checkinsCount);
+            	fs.setUsersCount(usersCount);
+            	fs.setCategory(category);
+            	fs.setUrl(url);
+            	
+            	fRepo.save(fs);
+            	
+            	System.out.println("Uploading FourSquare Data into MongoDB");
+            	
+            	
+            }
+            
+    	}
     	
     	
 }
