@@ -17,9 +17,28 @@ COLLECTION_NAME = 'fourSquareTrend'
 def index():
     return render_template("index.html")
 
-@app.route("/test")
+@app.route("/twitter")
 def test():
     return render_template("twitter.html")
+
+@app.route("/instagramTrend")
+def insta():
+    return render_template("instagram.html")
+
+@app.route("/trendaggregator/instagram")
+def trendaggregator_instagram():
+    connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
+    connection[DBS_NAME].authenticate('root','test123')
+	#db.authenticate('root','test123')
+    collection = connection[DBS_NAME]['instagramTrend']
+    projects = collection.find({},{'_id': 1, 'url': 1, 'caption': 1,'commentCount': 1, 'likesCount': 1, 'created_time': 1, 'latitude': 1, 'longitude': 1})
+    json_projects = []
+    for project in projects:
+        json_projects.append(project)
+    json_projects = json.dumps(json_projects, default=json_util.default)
+    connection.close()
+	#MongoClient.close()
+    return json_projects
 
 @app.route("/trendaggregator/foursquare")
 def trendaggregator_foursquare():

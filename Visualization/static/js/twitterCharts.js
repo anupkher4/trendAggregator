@@ -64,22 +64,24 @@ function makeGraphs(error, projectsJson, statesJson) {
 		.formatNumber(d3.format(".3s")); */
 
 	timeChart
-	.width(100)
-                    .height(100)
+	.width(500)
+                    .height(500)
                     .dimension(dateDim)
                     .group(numProjectsByDate)
                     .brushOn(true)
                     .x(d3.time.scale().domain([min, max]))
-                    .round(d3.time.day.round)
+                    .round(d3.time.day(new Date()).round)
                     .elasticY(true)
                     .xUnits(d3.time.days)
 		
 	resourceTypeChart
-        .width(1200)
-        .height(2000)
+        .width(6000)
+        .height(6000)
         .dimension(resourceTypeDim)
         .group(numProjectsByResourceType)
-        .xAxis().ticks(4);
+        .xAxis().ticks(10);
+		
+		
 
 	/* povertyLevelChart
 		.width(300)
